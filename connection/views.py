@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 class UserCreate(APIView):
-    
+
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
