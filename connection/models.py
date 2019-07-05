@@ -29,7 +29,7 @@ class UserLoginActivity(models.Model):
         return str(self.login_username)
 
 class ConnectionUserProfile(models.Model):
-    
+
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -45,7 +45,7 @@ class ConnectionUserProfile(models.Model):
     photo = models.ImageField(upload_to='uploads', blank=True)
     phone_number = PhoneNumberField(blank=True,null=True)
     fax_number = PhoneNumberField(blank=True,null=True)
-    
+
     class Meta:
         verbose_name = 'connection User Profile'
         verbose_name_plural = 'connection User Profiles'
@@ -55,11 +55,10 @@ class Connections(models.Model):
     connection_id =models.IntegerField(null=True, blank=True)
     created_at =  models.DateTimeField(auto_now_add=True,blank=True, null=True)
     updated_at =  models.DateTimeField(auto_now=True,blank=True, null=True)
-    
+
     class Meta:
         verbose_name = 'connection'
         verbose_name_plural = 'connections'
 
     def __str__(self):
-        return str(self.user)
-
+        return str(self.user_id)

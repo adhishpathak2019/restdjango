@@ -26,35 +26,35 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password')
-    
+
 
 class UserListSerializer(serializers.ModelSerializer):
 
     graph = serializers.SerializerMethodField()
     gender= serializers.SerializerMethodField()
     fullname= serializers.SerializerMethodField()
-    
+
     def get_fullname(self,instance):
         return str(instance.first_name)+str(instance.last_name)
 
     def get_gender(self,instance):
 
     	gender=ConnectionUserProfile.objects.filter(user=instance.id).values_list('gender', flat=True)
-    	
+
     	for gn in gender:
     		return gn
 
     def get_phonenumber(self,instance):
 
     	phonenumber=ConnectionUserProfile.objects.filter(user=instance.id).values_list('phone_number', flat=True)
-    	
+
     	for pn in phonenumber:
     		return pn
-    	
-     
+
+
     def get_graph(self,instance):
         try:
-            conn = Connections.objects.filter(user=instance.id).values_list('created_at__month').annotate(total_user=Count('user'))
+            conn = Connections.objects.filter(user_id=instance.id).values_list('created_at__month').annotate(total_user_id=Count('user_id'))
             conndict={}
             connlist=[]
             count=1
@@ -66,10 +66,10 @@ class UserListSerializer(serializers.ModelSerializer):
                 conndict["id"]=count
                 count=count+1
             return conndict
-            
+
         except Exception as e:
-            print(e) 
- 
+            print(e)
+
     class Meta:
         model = User
         fields = ('__all__')
