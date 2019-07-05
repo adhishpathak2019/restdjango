@@ -161,18 +161,3 @@ django_heroku.settings(locals())
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'connection.serializers.TokenSerializer',
 }
-
-INSTALLED_APPS.append('corsheaders')
-MIDDLEWARE_CLASSES.append('corsheaders.middleware.CorsMiddleware')
-CORS_ORIGIN_WHITELIST = ('127.0.0.1:3000',)
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
-CORS_ALLOW_HEADERS = (
-'x-requested-with',
-'content-type',
-'accept',
-'origin',
-'authorization',
-'x-csrftoken',
-'Api-Authorization',
-)
