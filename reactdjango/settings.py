@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'connection',
     'django_filters',
     'phonenumber_field',
+    'corsheaders',
 ]
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -64,7 +65,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'reactdjango.urls'
 
