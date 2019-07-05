@@ -1,5 +1,5 @@
 django==2.2.3
-psycopg
+psycopg2
 djangorestframework==3.9.4
 django-filters==0.2.1
 django-filter==2.1.0
