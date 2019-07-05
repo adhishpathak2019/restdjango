@@ -62,7 +62,7 @@ class UserListSerializer(serializers.ModelSerializer):
             return tk
 
     def get_fullname(self,instance):
-        return str(instance.first_name)+str(instance.last_name)
+        return str(instance.first_name)+" "+str(instance.last_name)
 
     def get_gender(self,instance):
 
@@ -98,10 +98,6 @@ class UserListSerializer(serializers.ModelSerializer):
             return maindict
         except Exception as e:
             print(e)
-
-    class Meta:
-        model = User
-        fields = ('__all__')
 
     class Meta:
         model = User
