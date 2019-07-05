@@ -35,6 +35,11 @@ class UserListView(generics.ListAPIView):
     filter_backends = (filters.SearchFilter,filters.OrderingFilter)
     search_fields = ('username','email',)
     ordering_fields = ('username',)
+    # data = [{'success':"true","msg":"all user data","data":queryset}]
+    #
+    # print(queryset)
+    # queryset=data
+    # print(data)
 
 
 

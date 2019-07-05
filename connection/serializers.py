@@ -81,20 +81,26 @@ class UserListSerializer(serializers.ModelSerializer):
     def get_graph(self,instance):
         try:
             conn = Connections.objects.filter(user_id=instance.id).values_list('created_at__month').annotate(total_user_id=Count('user_id'))
-            conndict={}
             connlist=[]
-            count=1
+            maindict=[]
             for cn in conn:
-                connlist=list(cn)
-                conndict["month"]=calendar.month_name[connlist[0]]
-                conndict["value"]=connlist[1]
+                connlist.append(list(cn))
+            count=1
+            for cl in connlist:
+                conndict={}
+                conndict["month"]=calendar.month_name[cl[0]]
+                conndict["value"]=cl[1]
                 conndict["user_id"]=instance.id
                 conndict["id"]=count
                 count=count+1
-            return conndict
-
+                maindict.append(conndict)                
+            return maindict
         except Exception as e:
             print(e)
+
+    class Meta:
+        model = User
+        fields = ('__all__')
 
     class Meta:
         model = User
