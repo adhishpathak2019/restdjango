@@ -150,4 +150,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "live-static-files", "media-root")
 
 django_heroku.settings(locals())
- 
+
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'connection.serializers.TokenSerializer',
+}

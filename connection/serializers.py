@@ -6,6 +6,26 @@ from django.contrib.auth.models import User
 from .models import ConnectionUserProfile, Connections
 import django_filters
 import calendar
+from rest_auth.models import TokenModel
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Token model.
+    """
+    success = serializers.SerializerMethodField()
+    msg = serializers.SerializerMethodField()
+
+    def get_msg(self,instance):
+        return "Login successfully"
+
+    def get_success(self,instance):
+        return "true"
+
+    class Meta:
+        model = TokenModel
+        fields = ('key', 'user_id','msg', 'success')   # there I add the `user` field ( this is my need data ).
+
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -33,6 +53,12 @@ class UserListSerializer(serializers.ModelSerializer):
     graph = serializers.SerializerMethodField()
     gender= serializers.SerializerMethodField()
     fullname= serializers.SerializerMethodField()
+    token= serializers.SerializerMethodField()
+
+    def get_token(self,instance):
+        token=TokenModel.objects.filter(user=instance).values_list('key', flat=True)
+        for tk in token:
+            return tk
 
     def get_fullname(self,instance):
         return str(instance.first_name)+str(instance.last_name)
