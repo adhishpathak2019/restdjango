@@ -1,0 +1,10 @@
+django==2.2.3
+psycopg==2.8.3
+djangorestframework==3.9.4
+django-filters==0.2.1
+django-filter==2.1.0
+django-rest-auth==0.9.5
+django-allauth==0.39.1
+Pillow==6.1.0
+django-phonenumber-field==3.0.1
+phonenumbers==8.10.14
