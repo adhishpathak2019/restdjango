@@ -154,3 +154,14 @@ django_heroku.settings(locals())
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'connection.serializers.TokenSerializer',
 }
+
+
+CORS_ALLOW_HEADERS = (
+'x-requested-with',
+'content-type',
+'accept',
+'origin',
+'authorization',
+'x-csrftoken',
+'Api-Authorization',
+)

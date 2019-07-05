@@ -4,3 +4,8 @@ http://localhost:8000/registration/
 http://localhost:8000/users-list/
 http://localhost:8000/login/
 http://localhost:8000/logout/
+
+https://restdjangoapi.herokuapp.com/registration/
+https://restdjangoapi.herokuapp.com/users-list/
+https://restdjangoapi.herokuapp.com/login/
+https://restdjangoapi.herokuapp.com/logout/
