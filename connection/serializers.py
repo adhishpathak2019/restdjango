@@ -54,6 +54,7 @@ class UserListSerializer(serializers.ModelSerializer):
     gender= serializers.SerializerMethodField()
     fullname= serializers.SerializerMethodField()
     token= serializers.SerializerMethodField()
+    mobile= serializers.SerializerMethodField()
 
     def get_token(self,instance):
         token=TokenModel.objects.filter(user=instance).values_list('key', flat=True)
@@ -70,7 +71,7 @@ class UserListSerializer(serializers.ModelSerializer):
     	for gn in gender:
     		return gn
 
-    def get_phonenumber(self,instance):
+    def get_mobile(self,instance):
 
     	phonenumber=ConnectionUserProfile.objects.filter(user=instance.id).values_list('phone_number', flat=True)
 
@@ -93,7 +94,7 @@ class UserListSerializer(serializers.ModelSerializer):
                 conndict["user_id"]=instance.id
                 conndict["id"]=count
                 count=count+1
-                maindict.append(conndict)                
+                maindict.append(conndict)
             return maindict
         except Exception as e:
             print(e)
