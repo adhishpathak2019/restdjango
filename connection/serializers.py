@@ -55,6 +55,15 @@ class UserListSerializer(serializers.ModelSerializer):
     fullname= serializers.SerializerMethodField()
     token= serializers.SerializerMethodField()
     mobile= serializers.SerializerMethodField()
+    connections= serializers.SerializerMethodField()
+
+    def get_connections(self,instance):
+        try:
+            conncount = Connections.objects.filter(user_id=instance.id).count()
+            return conncount
+        except Exception as e:
+            print(e)
+
 
     def get_token(self,instance):
         token=TokenModel.objects.filter(user=instance).values_list('key', flat=True)
