@@ -53,8 +53,8 @@ class ConnectionUserProfile(models.Model):
 class Connections(models.Model):
     user_id = models.IntegerField(null=True, blank=True)
     connection_id =models.IntegerField(null=True, blank=True)
-    created_at =  models.DateTimeField(auto_now_add=True, editable=True, blank=True, null=True)
-    updated_at =  models.DateTimeField(auto_now=True, editable=True, blank=True, null=True)
+    created_at =  models.DateTimeField(blank=True, null=True)
+    updated_at =  models.DateTimeField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'connection'
