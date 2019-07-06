@@ -90,7 +90,7 @@ class UserListSerializer(serializers.ModelSerializer):
 
     def get_graph(self,instance):
         try:
-            conn = Connections.objects.filter(user_id=instance.id).values_list('created_at__month').annotate(total_user_id=Count('user_id'))
+            conn = Connections.objects.filter(user_id=instance.id).values_list('created_at__month').annotate(total_user_id=Count('user_id')).order_by('created_at__month')
             connlist=[]
             maindict=[]
             for cn in conn:
