@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+from datetime import datetime
 
 # Create your models here.
 class UserLoginActivity(models.Model):
@@ -53,8 +53,8 @@ class ConnectionUserProfile(models.Model):
 class Connections(models.Model):
     user_id = models.IntegerField(null=True, blank=True)
     connection_id =models.IntegerField(null=True, blank=True)
-    created_at =  models.DateTimeField(blank=True, null=True)
-    updated_at =  models.DateTimeField(blank=True, null=True)
+    created_at =  models.DateTimeField(default=datetime.now,blank=True, null=True)
+    updated_at =  models.DateTimeField(default=datetime.now,blank=True, null=True)
 
     class Meta:
         verbose_name = 'connection'

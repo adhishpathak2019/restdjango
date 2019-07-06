@@ -9,6 +9,7 @@ import calendar
 from rest_auth.models import TokenModel
 
 
+
 class TokenSerializer(serializers.ModelSerializer):
     """
     Serializer for Token model.
@@ -20,6 +21,7 @@ class TokenSerializer(serializers.ModelSerializer):
         return "Login successfully"
 
     def get_success(self,instance):
+        Connections.objects.create(user_id=instance.user_id)
         return "true"
 
     class Meta:
